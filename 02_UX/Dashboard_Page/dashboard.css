@@ -1,0 +1,147 @@
+/* Resetting default margin and padding */
+body, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Setting default font family and color */
+  body {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  /* Global styles */
+  .container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Hero Section */
+  #hero {
+    background-color: #f8f9fa;
+    padding: 100px 0;
+  }
+  
+  .hero-container {
+    position: relative;
+  }
+  
+  .carousel-item {
+    position: relative;
+  }
+  
+  .carousel-background img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .carousel-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .carousel-content h2 {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-content h2 span {
+    color: #007bff;
+  }
+  
+  .btn-get-started {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-get-started:hover {
+    background-color: #0056b3;
+  }
+  
+  /* About Us Section */
+  #about {
+    padding: 80px 0;
+  }
+  
+  .about h2 {
+    margin-bottom: 30px;
+  }
+  
+  .about h3 {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .about img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .list-group-item {
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 5px;
+  }
+  
+  .list-group-item.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .tab-pane {
+    padding: 20px 0;
+  }
+  
+  /* Counts Section */
+  .counts {
+    background-color: #007bff;
+    color: #fff;
+    padding: 80px 0;
+  }
+  
+  .count-box {
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 20px;
+  }
+  
+  .count-box i {
+    font-size: 36px;
+  }
+  
+  .count-box p {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 767px) {
+    .carousel-content h2 {
+      font-size: 32px;
+    }
+  }
+  

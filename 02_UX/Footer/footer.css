@@ -1,0 +1,27 @@
+/* CSS for Footer */
+.dkp-footer {
+    margin-top: 50px; /* Adjust margin as needed */
+  }
+  
+  .page-footer {
+    width: 100%;
+    background-color: #343a40; /* Dark background color */
+    color: #fff; /* White text color */
+  }
+  
+  .footer-copyright {
+    background-color: #212529; /* Darker background color */
+  }
+  
+  .footer-copyright a {
+    color: #fff; /* Link color */
+  }
+  
+  /* Media Query for Responsive Design */
+  @media (max-width: 768px) {
+    .page-footer {
+      position: relative;
+      bottom: 0;
+    }
+  }
+  

@@ -1,0 +1,24 @@
+.card:hover {
+    box-shadow: 0 8px 12px 0 rgb(0 0 0 / 20%);
+}
+
+a.navbar-brand.text-light {
+    font-size: large;
+    font-family: fantasy;
+    padding: 9px;
+    margin-left: 11px;
+    background-color: #525252;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: red;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    a.navbar-brand.text-light {
+        font-size: medium;
+        padding: 7px;
+        margin-left: 7px;
+    }
+}

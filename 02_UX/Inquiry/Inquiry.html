@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details</title>
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+        crossorigin="anonymous" href="Inquiry.css">
+</head>
+
+<body>
+    <div class="row" style="width: 100.81%;">
+        <!-- Sidebar -->
+        <aside class="col-lg-3" style="width: 335px;">
+            <div>
+                <h3>Sidebar Title</h3>
+                <!-- Sidebar content goes here -->
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="col-lg-9">
+
+            <!-- Table Section -->
+            <div class="row py-5">
+                <div class="col-lg-10 mx-auto">
+                    <div class="card rounded shadow border-0">
+                        <div class="card-body p-0 bg-white rounded">
+                            <div class="table-responsive" style="padding: 20px;">
+                                <table id="example"
+                                    style="width:100%;margin-bottom: 0;background-color: #d8c9c4 !important;"
+                                    class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Username</th>
+                                            <th>Title</th>
+                                            <th>Message</th>
+                                            <th>datetime</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Hardcoded Data -->
+                                        <tr>
+                                            <td>1</td>
+                                            <td>User1</td>
+                                            <td>Title1</td>
+                                            <td>Message1</td>
+                                            <td>01 Jan 2023 12:00 PM</td>
+                                            <td>
+                                                <!-- Reply Button -->
+                                                <button type="button" class="btn btn-primary">
+                                                    <i class="fas fa-reply"></i>
+                                                </button>
+                                                <!-- Show History Button -->
+                                                <button type="button" class="btn btn-info float-end">
+                                                    <i class="fas fa-history"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>User2</td>
+                                            <td>Title2</td>
+                                            <td>Message2</td>
+                                            <td>02 Jan 2023 01:00 PM</td>
+                                            <td>
+                                                <!-- Reply Button -->
+                                                <button type="button" class="btn btn-primary">
+                                                    <i class="fas fa-reply"></i>
+                                                </button>
+                                                <!-- Show History Button -->
+                                                <button type="button" class="btn btn-info float-end">
+                                                    <i class="fas fa-history"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!-- More rows can be added similarly -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- Send Reply Modal -->
+    <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: cadetblue;">
+                    <h1 class="modal-title m-0" id="replyLabel">Reply to User</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="replyMsg" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="replyMsg" name="replyMsg"
+                                placeholder="Write reply message"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary float-end">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show History Modal -->
+    <div class="modal fade bd-example-modal-lg" id="showHistoryModal" tabindex="-1" role="dialog"
+        aria-labelledby="showHistoryLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: cadetblue;">
+                    <h2 class="modal-title m-0" id="showHistoryLabel">History</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background: darkgray;">
+                    <div class="card rounded shadow border-0">
+                        <div class="card-body p-0 bg-white rounded">
+                            <div class="table-responsive">
+                                <table id="historyTable" style="width:100%;margin-bottom: 0;"
+                                    class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Reply Messages</th>
+                                            <th>datetime</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- History data goes here -->
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <!-- No History message goes here -->
+                                    <h3 class="m-3">No History Available</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

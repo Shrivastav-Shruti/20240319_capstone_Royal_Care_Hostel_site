@@ -18,69 +18,69 @@ const routes: Routes = [
   {
     path:'',
     pathMatch:'full',
-    redirectTo: 'dashboard'
+    redirectTo: 'dashboard' // Redirect to the dashboard component if the path is empty
   },
   {
     path:'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) // Lazy loading for the AuthModule
   },
   {
     path:'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) // Lazy loading for the AdminModule
   },
   {
     path:'dashboard',
     pathMatch:'full',
-    component: DashboardComponent
+    component: DashboardComponent // Route to the DashboardComponent
   },
   { 
     path: 'hostel-detail', 
     pathMatch:'full',
-    component: HostelDetailComponent 
+    component: HostelDetailComponent  // Route to the HostelDetailComponent
   },
   { 
     path: 'contactUs', 
     pathMatch:'full',
-    component: ContactUsComponent 
+    component: ContactUsComponent  // Route to the ContactUsComponent
   },
   { 
     path: 'profile', 
     pathMatch:'full',
-    component: ProfileComponent 
+    component: ProfileComponent  // Route to the ProfileComponent
   }, 
   { 
     path: 'girlssuperdelux', 
     pathMatch:'full',
-    component: GirlsSuperdeluxComponent
+    component: GirlsSuperdeluxComponent  // Route to the GirlsSuperdeluxComponent
   }, 
   { 
     path: 'girlsdelux', 
     pathMatch:'full',
-    component: GirlsDeluxComponent
+    component: GirlsDeluxComponent  // Route to the GirlsDeluxComponent
   },  
   { 
     path: 'girlsstandard', 
     pathMatch:'full',
-    component: GirlsStandardComponent
+    component: GirlsStandardComponent  // Route to the GirlsStandardComponent
   },  
   { 
     path: 'boyssuperdelux', 
     pathMatch:'full',
-    component: BoysSuperdeluxComponent
+    component: BoysSuperdeluxComponent  // Route to the BoysSuperdeluxComponent
   }, 
   { 
     path: 'boysdelux', 
     pathMatch:'full',
-    component: BoysDeluxComponent
+    component: BoysDeluxComponent  // Route to the BoysDeluxComponent
   }, 
   { 
     path: 'boysstandard', 
     pathMatch:'full',
-    component: BoysStandardComponent
+    component: BoysStandardComponent  // Route to the BoysStandardComponent
   }, 
 
-  {path: '404', component: NotFoundComponent},
-  {path: '**', component: NotFoundComponent}
+  {path: '404', component: NotFoundComponent}, // Route for handling 404 errors
+  {path: '**', component: NotFoundComponent} // Wildcard route for handling unknown routes
 ];
 
 @NgModule({

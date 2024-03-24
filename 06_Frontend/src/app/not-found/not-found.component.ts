@@ -9,6 +9,10 @@ export class NotFoundComponent implements OnInit {
 
   constructor() { }
 
+  /**
+   * Lifecycle hook that is called after Angular has initialized all data-bound properties of the component.
+   * It is used to perform any initialization logic for the component.
+   */
   ngOnInit(): void {
   }
 

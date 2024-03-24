@@ -1,8 +1,18 @@
+<!-- 
+    This component represents a standard room template with details such as image, room type, price, amenities, and buttons.
+    Users can view information about the standard room, including facilities and price.
+    They can also proceed to checkout by clicking the "Checkout" button or cancel the action by clicking the "Cancel" button.
+-->
 <div class="room">
+    <!-- Image of the standard room -->
     <img src="/../assets/img/boysRoom3.jpg" alt="Super Delux Room">
+    <!-- Title of the room -->
     <h1>Standard Rooms</h1>
+    <!-- Description of the room -->
     <p>Three Person Room</p>
+    <!-- Price of the room -->
     <p class="price">₹ 45000 including food</p>
+    <!-- List of amenities provided -->
     <ul class="list">
         <li>WiFi Zone</li>
         <li>Doctor on call</li>
@@ -13,11 +23,12 @@
         <li>Walk way</li>
         <li>Spacious and comfortable Rooms</li>
         <li>Peaceful and natural Environment for study</li>
+        <!-- Buttons for actions -->
         <li>
+            <!-- Button to proceed to checkout -->
             <a (click)="payNow()" class="btn btn-primary">Checkout</a>
+            <!-- Button to cancel the action and navigate back -->
             <a routerLink="/hostel-detail" class="btn btn-secondary">Cancel</a>
         </li>
     </ul>
 </div>
-
-

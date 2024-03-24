@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Prices } from '../prices';
-import { Availability } from '../availability';
-import { AdminService } from '../admin/admin.service';
+import { Prices } from '../prices'; // Importing Prices interface for room prices
+import { Availability } from '../availability'; // Importing Availability interface for room availability
+import { AdminService } from '../admin/admin.service'; // Importing AdminService for fetching hostel details
 
 @Component({
   selector: 'hostel-hostel-detail',
@@ -10,22 +10,24 @@ import { AdminService } from '../admin/admin.service';
 })
 export class HostelDetailComponent implements OnInit {
 
-  prices: Prices;
-  room: any[];
+  prices: Prices; // Variable to store room prices
+  room: any[]; // Variable to store room details
 
+  // Object to store room availability counts
   availability: Availability = {
-    boysStandardRooms: 0,  // 12
-    boysDeluxeRooms: 0,  // 15
-    boysSuperDeluxeRooms: 0, // 10
-    girlsStandardRooms: 0, // 13
-    girlsDeluxeRooms: 0, // 15
-    girlsSuperDeluxeRooms: 0 // 11
+    boysStandardRooms: 0,  
+    boysDeluxeRooms: 0,  
+    boysSuperDeluxeRooms: 0, 
+    girlsStandardRooms: 0, 
+    girlsDeluxeRooms: 0, 
+    girlsSuperDeluxeRooms: 0 
   };
 
-  constructor(private adminService: AdminService) 
-  { 
+  constructor(private adminService: AdminService) { 
+    // Fetching hostel price details from the AdminService and subscribing to the observable
     this.adminService.findHostelPriceDetails().subscribe(hostelPriceDetail =>(this.prices = hostelPriceDetail));
     
+    // Fetching availability counts for different types of rooms from the AdminService and subscribing to the observables
     this.adminService.boysSuperDeluxRooms().subscribe((total) => { this.availability.boysSuperDeluxeRooms = total.length; });
     this.adminService.boysDeluxRooms().subscribe((total) => { this.availability.boysDeluxeRooms = total.length; });
     this.adminService.boysStandardRooms().subscribe((total) => { this.availability.boysStandardRooms = total.length; });
@@ -36,5 +38,4 @@ export class HostelDetailComponent implements OnInit {
   
   ngOnInit(): void {
   }
-
 }

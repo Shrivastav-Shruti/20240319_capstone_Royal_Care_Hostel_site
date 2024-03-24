@@ -10,6 +10,7 @@ describe('ContactUsService', () => {
     service = TestBed.inject(ContactUsService);
   });
 
+  // Test to check if the service is created successfully
   it('should be created', () => {
     expect(service).toBeTruthy();
   });

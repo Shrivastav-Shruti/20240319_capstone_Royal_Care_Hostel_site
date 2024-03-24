@@ -8,7 +8,6 @@ declare var Razorpay: any;
   styleUrls: ['./girls-superdelux.component.css']
 }) 
 
-
 export class GirlsSuperdeluxComponent implements OnInit {
      paymentId:any
     constructor() { }
@@ -16,7 +15,7 @@ export class GirlsSuperdeluxComponent implements OnInit {
   ngOnInit(): void {
   } 
 
- 
+  // Function to load the Razorpay SDK dynamically
   loadRazorpaySdk() {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -31,6 +30,7 @@ export class GirlsSuperdeluxComponent implements OnInit {
     });
   } 
 
+  // Function to initiate the payment process
   async payNow() {
     console.log("clicked");
   
@@ -45,7 +45,7 @@ export class GirlsSuperdeluxComponent implements OnInit {
   
     // Razorpay SDK is now loaded, proceed with creating Razorpay instance
     const options = {
-      // your options here
+      // Specify payment options
       description: 'Sample Razorpay demo',
       currency: 'INR',
       amount: 7000000,
@@ -68,6 +68,7 @@ export class GirlsSuperdeluxComponent implements OnInit {
   
     };
   
+    // Define success and failure callback functions
     const successCallback = (paymentId: any) => {
       console.log('Payment successful with ID:', paymentId);
     };
@@ -76,12 +77,10 @@ export class GirlsSuperdeluxComponent implements OnInit {
       console.error('Payment failed with error:', error);
     };
   
-    // Create a new instance of Razorpay
+    // Create a new instance of Razorpay and open payment modal
     const rzp = new Razorpay(options);
     rzp.on('payment.success', successCallback);
     rzp.on('payment.failure', failureCallback);
     rzp.open();
   }
 }
-
-

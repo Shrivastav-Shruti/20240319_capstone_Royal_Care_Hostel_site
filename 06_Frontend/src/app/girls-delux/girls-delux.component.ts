@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';  
-/** Declare Razorpay as an external variable */
+/** 
+ * Declare Razorpay as an external variable 
+ */
 declare var Razorpay: any;
 
 @Component({
@@ -15,6 +17,10 @@ export class GirlsDeluxComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Loads the Razorpay SDK asynchronously
+   * @returns A promise that resolves when the SDK is loaded successfully
+   */
   loadRazorpaySdk() {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -29,6 +35,9 @@ export class GirlsDeluxComponent implements OnInit {
     });
   } 
 
+  /**
+   * Handles the payment process using Razorpay
+   */
   async payNow() {
     console.log("clicked");
   
@@ -80,6 +89,4 @@ export class GirlsDeluxComponent implements OnInit {
     rzp.on('payment.failure', failureCallback);
     rzp.open();
   }
-
-
 }

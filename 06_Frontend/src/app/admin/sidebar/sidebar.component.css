@@ -1,109 +1,135 @@
-  body {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-  }
-  
-  html {
-    height: -webkit-fill-available;
-  }
-  
-  main {
-    display: flex;
-    flex-wrap: nowrap;
-    height: 2354vh !important;
-    margin-bottom: -99999px;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-  
-  .b-example-divider {
-    flex-shrink: 0;
-    width: 1.5rem;
-    /* height: 100vh; */
-    background-color: rgb(255 255 255 / 23%);;
-    border: solid rgba(0, 0, 0, .15);
-    border-width: 1px 0;
-    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-  }
-  
-  .bi {
-    vertical-align: -.125em;
-    pointer-events: none;
-    fill: currentColor;
-  }
-  
-  .dropdown-toggle { outline: 0; }
-  
-  .nav-flush .nav-link {
-    border-radius: 0;
-  }
-  
-  .btn-toggle {
-    display: inline-flex;
-    align-items: center;
-    padding: .25rem .5rem;
-    font-weight: 600;
-    color: rgba(0, 0, 0, .65);
-    background-color: transparent;
-    border: 0;
-  }
-  .btn-toggle:hover,
-  .btn-toggle:focus {
-    color: rgba(0, 0, 0, .85);
-    background-color: #d2f4ea;
-  }
-  
-  .btn-toggle::before {
-    width: 1.25em;
-    line-height: 0;
-    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-    transition: transform .35s ease;
-    transform-origin: .5em 50%;
-  }
-  
-  .btn-toggle[aria-expanded="true"] {
-    color: rgba(0, 0, 0, .85);
-  }
-  .btn-toggle[aria-expanded="true"]::before {
-    transform: rotate(90deg);
-  }
-  
-  .btn-toggle-nav a {
-    display: inline-flex;
-    padding: .1875rem .5rem;
-    margin-top: .125rem;
-    margin-left: 1.25rem;
-    text-decoration: none;
-  }
-  .btn-toggle-nav a:hover,
-  .btn-toggle-nav a:focus {
-    background-color: #d2f4ea;
-  }
-  
-  .scrollarea {
-    overflow-y: auto;
-  }
-  
-  .fw-semibold { font-weight: 600; }
-  .lh-tight { line-height: 1.25; }
-  
-  .sidebar li .submenu{ 
-    list-style: none; 
-    margin: 0; 
-    padding: 0; 
-    padding-left: 1rem; 
-    padding-right: 1rem;
-  }
-  .sidebar .nav-link {
-      font-weight: 500;
-  }
-  .sidebar .nav-link:hover {
-      color: red;
-  }
-  a.nav-link {
-    color: burlywood;
-  }
+/* Setting minimum height for body to fill the viewport */
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available; /* For Safari */
+}
 
-  a.nav-link.dkpActive {
-    color: red;
-  } 
+/* Setting height for html to fill the available space */
+html {
+  height: -webkit-fill-available; /* For Safari */
+}
+
+/* Styling for the main container */
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 2354vh !important; /* Setting a specific height, possibly for scrolling */
+  margin-bottom: -99999px; /* Negative margin to counteract margin collapse */
+  overflow-x: auto; /* Allowing horizontal scrolling */
+  overflow-y: hidden; /* Hiding vertical overflow */
+}
+
+/* Styling for a divider element */
+.b-example-divider {
+  flex-shrink: 0; /* Preventing the divider from shrinking */
+  width: 1.5rem; /* Setting width */
+  background-color: rgb(255 255 255 / 23%); /* Background color with opacity */
+  border: solid rgba(0, 0, 0, .15); /* Border style */
+  border-width: 1px 0; /* Border width */
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15); /* Box shadow */
+}
+
+/* Styling for Bootstrap icons */
+.bi {
+  vertical-align: -.125em; /* Adjusting vertical alignment */
+  pointer-events: none; /* Disabling pointer events */
+  fill: currentColor; /* Filling icon with current color */
+}
+
+/* Removing outline for dropdown toggle */
+.dropdown-toggle { outline: 0; }
+
+/* Styling for flushed navigation links */
+.nav-flush .nav-link {
+  border-radius: 0; /* Removing border radius */
+}
+
+/* Styling for toggle buttons */
+.btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: .25rem .5rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .65);
+  background-color: transparent;
+  border: 0;
+}
+
+/* Hover and focus styles for toggle buttons */
+.btn-toggle:hover,
+.btn-toggle:focus {
+  color: rgba(0, 0, 0, .85);
+  background-color: #d2f4ea;
+}
+
+/* Styling for toggle button icon */
+.btn-toggle::before {
+  width: 1.25em;
+  line-height: 0;
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  transition: transform .35s ease;
+  transform-origin: .5em 50%;
+}
+
+/* Styling for expanded toggle buttons */
+.btn-toggle[aria-expanded="true"] {
+  color: rgba(0, 0, 0, .85);
+}
+
+/* Transform for expanded toggle button icon */
+.btn-toggle[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+/* Styling for navigation links within toggle buttons */
+.btn-toggle-nav a {
+  display: inline-flex;
+  padding: .1875rem .5rem;
+  margin-top: .125rem;
+  margin-left: 1.25rem;
+  text-decoration: none;
+}
+
+/* Hover and focus styles for navigation links within toggle buttons */
+.btn-toggle-nav a:hover,
+.btn-toggle-nav a:focus {
+  background-color: #d2f4ea;
+}
+
+/* Styling for scrollable area */
+.scrollarea {
+  overflow-y: auto; /* Allowing vertical scrolling */
+}
+
+/* Font weight styles */
+.fw-semibold { font-weight: 600; }
+.lh-tight { line-height: 1.25; }
+
+/* Styling for submenu items */
+.sidebar li .submenu {
+  list-style: none; /* Removing default list style */
+  margin: 0; /* Removing margin */
+  padding: 0; /* Removing padding */
+  padding-left: 1rem; /* Adding left padding */
+  padding-right: 1rem; /* Adding right padding */
+}
+
+/* Styling for navigation links in the sidebar */
+.sidebar .nav-link {
+  font-weight: 500; /* Setting font weight */
+}
+
+/* Hover style for navigation links in the sidebar */
+.sidebar .nav-link:hover {
+  color: red; /* Changing text color on hover */
+}
+
+/* Default link color */
+a.nav-link {
+  color: burlywood; /* Setting default link color */
+}
+
+/* Active link color */
+a.nav-link.dkpActive {
+  color: red; /* Setting active link color */
+}

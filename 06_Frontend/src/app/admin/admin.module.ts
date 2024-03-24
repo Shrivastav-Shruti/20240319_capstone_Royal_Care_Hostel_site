@@ -1,3 +1,6 @@
+/**
+ * NgModule for the admin module, responsible for managing routes and providing components related to admin functionalities.
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

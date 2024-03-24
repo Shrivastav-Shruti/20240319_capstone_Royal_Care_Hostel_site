@@ -1,4 +1,7 @@
+/* Styles for the row class */
 .row {
+    /* Set background color to a dark shade */
     background-color: #152733 !important;
+    /* Hide any content that overflows the container */
     overflow: hidden;
 }

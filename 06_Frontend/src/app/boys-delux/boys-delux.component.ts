@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core'; 
-/** Declare Razorpay as an external variable */
+import { Component, OnInit } from '@angular/core';
+
+/** 
+ * Declare Razorpay as an external variable to use the Razorpay SDK.
+ * This allows the TypeScript compiler to recognize the Razorpay variable.
+ */
 declare var Razorpay: any;
 
 @Component({
@@ -8,14 +12,17 @@ declare var Razorpay: any;
   styleUrls: ['./boys-delux.component.css']
 })
 export class BoysDeluxComponent implements OnInit {  
-  paymentId:any 
-
+  paymentId: any;
 
   constructor() { }
 
   ngOnInit(): void {
   } 
 
+  /**
+   * Load the Razorpay SDK asynchronously.
+   * @returns A promise that resolves when the SDK is loaded successfully and rejects if there is an error.
+   */
   loadRazorpaySdk() {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -30,6 +37,10 @@ export class BoysDeluxComponent implements OnInit {
     });
   } 
 
+  /**
+   * Initiate the payment process using Razorpay.
+   * Loads the Razorpay SDK and creates a new Razorpay instance.
+   */
   async payNow() {
     console.log("clicked");
   
@@ -44,7 +55,7 @@ export class BoysDeluxComponent implements OnInit {
   
     // Razorpay SDK is now loaded, proceed with creating Razorpay instance
     const options = {
-      // your options here
+      // Razorpay payment options
       description: 'Sample Razorpay demo',
       currency: 'INR',
       amount: 5500000,
@@ -52,7 +63,7 @@ export class BoysDeluxComponent implements OnInit {
       key: 'rzp_test_rcZDiWvY5D4oKi',
       image: '',
       prefill: {
-        name:"Shruti Shrivastav",
+        name: "Shruti Shrivastav",
         email: 'shrutishrivastav38@gmail.com',
         contact: '8624833069',
       },
@@ -64,7 +75,6 @@ export class BoysDeluxComponent implements OnInit {
           console.log('Payment dismissed');
         },
       },
-  
     };
   
     const successCallback = (paymentId: any) => {
@@ -75,13 +85,10 @@ export class BoysDeluxComponent implements OnInit {
       console.error('Payment failed with error:', error);
     };
   
-    // Create a new instance of Razorpay
+    // Create a new instance of Razorpay and open the payment modal
     const rzp = new Razorpay(options);
     rzp.on('payment.success', successCallback);
     rzp.on('payment.failure', failureCallback);
     rzp.open();
   }
-
-
-
 }

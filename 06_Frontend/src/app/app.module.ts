@@ -1,25 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeaderComponent } from './header/header.component';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthHeaderInterceptorService } from './interceptors/auth-header-interceptor.service';
-import { HostelDetailComponent } from './hostel-detail/hostel-detail.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { FooterComponent } from './footer/footer.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ProfileComponent } from './profile/profile.component';
-
-// import { SigninComponent } from './auth/signin/signin.component';
-// import { SignupComponent } from './auth/signup/signup.component';
+import { AppRoutingModule } from './app-routing.module'; // Importing the routing module
+import { AppComponent } from './app.component'; // Importing the root component
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Importing animation module
+import { DashboardComponent } from './dashboard/dashboard.component'; // Importing dashboard component
+import { HeaderComponent } from './header/header.component'; // Importing header component
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importing form-related modules
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Importing HTTP client and related modules
+import { AuthHeaderInterceptorService } from './interceptors/auth-header-interceptor.service'; // Importing HTTP interceptor
+import { HostelDetailComponent } from './hostel-detail/hostel-detail.component'; // Importing hostel detail component
+import { ContactUsComponent } from './contact-us/contact-us.component'; // Importing contact us component
+import { FooterComponent } from './footer/footer.component'; // Importing footer component
+import { NotFoundComponent } from './not-found/not-found.component'; // Importing not found component
+import { ProfileComponent } from './profile/profile.component'; // Importing profile component
 
 @NgModule({
-  declarations: [
+  declarations: [ // Declaring components
     AppComponent,
     DashboardComponent,
     HeaderComponent,
@@ -29,21 +25,21 @@ import { ProfileComponent } from './profile/profile.component';
     NotFoundComponent,
     ProfileComponent,
   ],
-  imports: [
+  imports: [ // Importing modules
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
+    AppRoutingModule, // Routing module
+    BrowserAnimationsModule, // Animation module
     FormsModule,
-    HttpClientModule,
+    HttpClientModule, // HTTP client module
     ReactiveFormsModule
   ],
-  providers: [
+  providers: [ // Providing services
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthHeaderInterceptorService,
+      useClass: AuthHeaderInterceptorService, // Using HTTP interceptor for authorization header
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // Bootstrapping root component
 })
-export class AppModule { }
+export class AppModule { } // Exporting AppModule as the root module of the application

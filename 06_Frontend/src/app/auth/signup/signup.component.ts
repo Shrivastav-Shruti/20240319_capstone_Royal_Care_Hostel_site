@@ -1,10 +1,12 @@
-import { EMPTY } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/user';
 import { AuthService } from '../auth.service';
 
+/**
+ * Component for user signup
+ */
 @Component({
   selector: 'hostel-signup',
   templateUrl: './signup.component.html',
@@ -21,7 +23,7 @@ export class SignupComponent implements OnInit {
     mobileNumber : new FormControl('',[Validators.required, Validators.pattern("[7-9]{1}[0-9]{9}")]),
     email : new FormControl('',[Validators.required, Validators.email]),
     newPassword : new FormControl('',[Validators.required]),
-    cPassword : new FormControl('',[Validators.required, this.passwordMatch]),
+    cPassword : new FormControl('',[Validators.required, this.passwordMatch()]),
   });
 
   constructor(private router: Router, private authService: AuthService)
@@ -32,20 +34,17 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  passwordMatch(control: FormControl) {
-    let newPassword = control.root.get('newPassword');
-    return newPassword && control.value !== newPassword.value?
-    {
-      passwordMatch:true
-    }
-    : null;
+  /**
+   * Custom validator to check if password matches
+   * @returns ValidatorFn
+   */
+  passwordMatch(): ValidatorFn {
+    return (control: AbstractControl) => {
+      let newPassword = this.userGroup.get('newPassword');
+      return newPassword && control.value !== newPassword.value ?
+        { passwordMatch: true } : null;
+    };
   }
-
-  // mobileNumberLegth(control: FormControl) {
-  //   return control.value.length === 10?{
-  //     mobileNumberLegth:true
-  //   }: null;
-  // }
 
   signup() {
     if(!this.userGroup.valid) {

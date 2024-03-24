@@ -1,15 +1,21 @@
+/**
+ * The following HTML structure represents a row containing an aside element and a main element.
+ * The row has a custom width set to 100.80% using inline CSS.
+ */
 <div class="row" style="width: 100.80%;">
+    <!-- The aside element, representing a sidebar for hostel administration, with a fixed width of 335px. -->
     <aside class="col-lg-3" style="width: 335px;"> 
         <admin-hostel-sidebar></admin-hostel-sidebar>
     </aside>
+    <!-- The main element containing two container divs, each displaying an image. -->
     <main class="col-lg-9">
-
+        <!-- Container for displaying an image of boys' rooms, centered horizontally. -->
         <div class="container d-flex justify-content-center my-5">
             <img src="../../../assets/img/boysRooms.png" alt="" style="width: 100%;">
         </div>
+        <!-- Container for displaying an image of girls' rooms, centered horizontally. -->
         <div class="container d-flex justify-content-center my-5">
             <img src="../../../assets/img/girlsRooms.png" alt="" style="width: 100%;">
         </div>
-        
     </main>
 </div>

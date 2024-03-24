@@ -1,3 +1,7 @@
+/**
+ * AuthService handles authentication-related functionality like login, logout, and signup.
+ * It communicates with the backend API to perform these operations.
+ */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
@@ -5,6 +9,10 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { TokenStorageService } from '../token-storage.service';
 import { User } from '../user';
 
+/**
+ * Data transfer object for user authentication.
+ * Contains user information and authentication token.
+ */
 interface UserDto {
   user: User;
   token: string;
@@ -14,14 +22,21 @@ interface UserDto {
   providedIn: 'root'
 })
 export class AuthService {
+  // Subject to broadcast user authentication status
   private user$ = new Subject<User>();
+  // API URL for authentication endpoints
   private apiUrl = 'http://localhost:4050/api/auth/';
 
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) { }
   
+  /**
+   * Logs in a user with provided credentials.
+   * @param currentUsername The username of the user
+   * @param currentPassword The password of the user
+   * @returns An observable containing the user object
+   */
   login(currentUsername: string, currentPassword: string) {
     const loginCredentials = { currentUsername, currentPassword };
-    // console.log('login credentials', loginCredentials);
 
     return this.httpClient
     .post<UserDto>(`${this.apiUrl}SignIn`, loginCredentials)
@@ -29,46 +44,53 @@ export class AuthService {
       switchMap(({ user, token }) => {
         this.setUser(user);
         this.tokenStorage.setToken(token);
-        // console.log('found user', user);
         return of(user);
       }),
       catchError(err => {
-        // console.log(`Your login details could not be verified. Please try again`, err);
         return throwError(`Your login details could not be verified. Please try again`);
       })
     );
   }
 
+  /**
+   * Logs out the currently logged-in user.
+   */
   logout() {
-    // remove user from subject
     this.setUser(null);
-    // remove token from localStorage
     this.tokenStorage.removeToken();
-    console.log('user logout successfully');
   }
 
+  /**
+   * Returns an observable containing the current user.
+   */
   get user() { return this.user$.asObservable(); }
 
+  /**
+   * Registers a new user with provided details.
+   * @param userToSave The user details to be registered
+   * @returns An observable containing the registered user
+   */
   signup(userToSave: any) {
-    return this.httpClient.post<any>(`${this.apiUrl}SignUp`,userToSave).pipe
+    return this.httpClient.post<any>(`${this.apiUrl}SignUp`, userToSave).pipe
     (
-      switchMap(({user, token}) => {
+      switchMap(({ user, token }) => {
         this.setUser(user);
         this.tokenStorage.setToken(token);
-        console.log(`user registered successfully`, user);
         return of(user);
       }),
       catchError(err => {
-        console.log(`server error occured`, err);
         return throwError(`Registration failed please contact to admin`);
       })
     );
-
   }
 
+  /**
+   * Retrieves the user information of the currently authenticated user.
+   * @returns An observable containing the user object
+   */
   findMe() {
     const token = this.tokenStorage.getToken();
-    if(!token) {
+    if (!token) {
       return EMPTY;
     }
 
@@ -76,19 +98,20 @@ export class AuthService {
     (
       switchMap(({ user }) => {
         this.setUser(user);
-        // console.log('found user', user);
         return of(user);
       }),
       catchError(err => {
-        console.log(`Your login details could not be verified. Please try again`, err);
         return throwError(`Your login details could not be verified. Please try again`);
       })
     );
   }
 
+  /**
+   * Sets the current user and broadcasts it to subscribers.
+   * @param user The user object to be set
+   */
   private setUser(user: any) {
     this.user$.next(user);
   }
 
 }
-

@@ -9,7 +9,7 @@ import { User } from '../user';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent  implements OnDestroy {
+export class HeaderComponent implements OnDestroy {
 
   title = "Royal Care";
   user: User;
@@ -17,21 +17,25 @@ export class HeaderComponent  implements OnDestroy {
 
   constructor(private authService: AuthService, private router: Router) 
   {
-    this.authService.findMe().subscribe(user =>(this.user = user));
-    this.userSubscription = this.authService.user.subscribe(user =>(this.user = user));
+    // Subscribe to the user observable from the AuthService to get user information
+    this.userSubscription = this.authService.user.subscribe(user => (this.user = user));
   }
 
   ngOnInit(): void {
+    // Call findMe method to ensure user data is fetched initially
+    this.authService.findMe().subscribe(user => (this.user = user));
   }
 
+  // Method to logout the user
   logout() {
-      if(confirm('Are you sure?')) {
-        this.authService.logout();
-        this.router.navigate(['/']);
-      }
+    if(confirm('Are you sure?')) {
+      this.authService.logout();
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnDestroy(): void {
+    // Unsubscribe from user observable to prevent memory leaks
     if(this.userSubscription) 
       this.userSubscription.unsubscribe();
   }

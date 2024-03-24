@@ -1,3 +1,6 @@
+/**
+ * Import necessary components and modules.
+ */
 import { PricesComponent } from './prices/prices.component';
 import { ViewAllStudentComponent } from './view-all-student/view-all-student.component';
 import { NgModule } from '@angular/core';
@@ -11,65 +14,71 @@ import { InquiryComponent } from './inquiry/inquiry.component';
 import { UsersComponent } from './users/users.component';
 import { RoomStructureComponent } from './room-structure/room-structure.component';
 
+/**
+ * Define routes for the admin module.
+ */
 const routes: Routes = [
   {
     path: '',
     canActivate: [AdminGuard],
-      children: [
-        {
-          path:'',
-          pathMatch:'full',
-          redirectTo: '/admin/dashboard'
-        },
-        {
-          path:'dashboard',
-          pathMatch:'full',
-          component: DashboardComponent
-        },
-        {
-          path:'addStudent',
-          pathMatch:'full',
-          component: StudentAddComponent
-        },
-        {
-          path:'viewStudent',
-          pathMatch:'full',
-          component: ViewAllStudentComponent
-        },
-        {
-          path:'updateStudent',
-          pathMatch:'full',
-          component: UpdateStudentComponent
-        },
-        {
-          path:'foodMenu',
-          pathMatch:'full',
-          component: FoodMenuComponent
-        },
-        {
-          path:'inquiry',
-          pathMatch:'full',
-          component: InquiryComponent
-        },
-        {
-          path:'priceDetails',
-          pathMatch:'full',
-          component: PricesComponent
-        },
-        {
-          path:'users',
-          pathMatch:'full',
-          component: UsersComponent
-        },
-        {
-          path:'roomStructure',
-          pathMatch:'full',
-          component: RoomStructureComponent
-        }
-      ]
+    children: [
+      {
+        path:'',
+        pathMatch:'full',
+        redirectTo: '/admin/dashboard'
+      },
+      {
+        path:'dashboard',
+        pathMatch:'full',
+        component: DashboardComponent
+      },
+      {
+        path:'addStudent',
+        pathMatch:'full',
+        component: StudentAddComponent
+      },
+      {
+        path:'viewStudent',
+        pathMatch:'full',
+        component: ViewAllStudentComponent
+      },
+      {
+        path:'updateStudent',
+        pathMatch:'full',
+        component: UpdateStudentComponent
+      },
+      {
+        path:'foodMenu',
+        pathMatch:'full',
+        component: FoodMenuComponent
+      },
+      {
+        path:'inquiry',
+        pathMatch:'full',
+        component: InquiryComponent
+      },
+      {
+        path:'priceDetails',
+        pathMatch:'full',
+        component: PricesComponent
+      },
+      {
+        path:'users',
+        pathMatch:'full',
+        component: UsersComponent
+      },
+      {
+        path:'roomStructure',
+        pathMatch:'full',
+        component: RoomStructureComponent
+      }
+    ]
   }
 ];
 
+/**
+ * NgModule for the admin routing.
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

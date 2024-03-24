@@ -1,47 +1,68 @@
 <div class="row" style="width: 100%;">
+    <!-- Sidebar -->
     <aside class="col-lg-3" style="width: 335px;"> 
         <admin-hostel-sidebar></admin-hostel-sidebar>
     </aside>
+    
+    <!-- Main Content -->
     <main class="col-lg-9">
-
+        <!-- Card wrapper -->
         <div class="wrapper wrapper--w900 my-5">
+            <!-- Card -->
             <div class="card card-6">
+                <!-- Card heading -->
                 <div class="card-heading">
-                        <h2 class="title">Prices</h2>
+                    <h2 class="title">Prices</h2>
                 </div>
+                
+                <!-- Card body -->
                 <div class="card-body">  
+                    <!-- Instruction -->
                     <h4 class="text-danger text-right mx-2 font-weight-bold">click twice to edit details</h4>
+                    
+                    <!-- Form -->
                     <form [formGroup]="priceDetails">
+                        <!-- Super Deluxe Room price input -->
                         <div class="form-row">
                             <div class="name">Super Delux Room :</div> 
                             <div class="value" (dblclick)="this.priceDetails.get('superDeluxe')!.enable();">
                                 <input class="input--style-6" type="number" name="superDeluxe" formControlName="superDeluxe" [disabled]="true">
                             </div>
                         </div>
+                        
+                        <!-- Deluxe Room price input -->
                         <div class="form-row">
                             <div class="name">Delux Room :</div>
                             <div class="value" (dblclick)="this.priceDetails.get('deluxe')!.enable();">
                                 <input class="input--style-6" type="number" id="deluxe" name="deluxe" formControlName="deluxe">
                             </div>
                         </div>
+                        
+                        <!-- Standard Room price input -->
                         <div class="form-row">
                             <div class="name">Standard Room :</div>
                             <div class="value" (dblclick)="this.priceDetails.get('standard')!.enable();">
                                 <input class="input--style-6" type="number" id="standard" name="standard" formControlName="standard">
                             </div>
                         </div>
+                        
+                        <!-- Food Package price input -->
                         <div class="form-row">
                             <div class="name">Food Package :</div>
                             <div class="value" (dblclick)="this.priceDetails.get('foodPackage')!.enable();">
                                 <input class="input--style-6" type="number" id="foodPackage" name="foodPackage" formControlName="foodPackage">
                             </div>
                         </div>
+                        
+                        <!-- Electricity Bill per Unit price input -->
                         <div class="form-row">
                             <div class="name">Electricity Bill per Unit :</div>
                             <div class="value" (dblclick)="this.priceDetails.get('electricityBillPerUnit')!.enable();">
                                 <input class="input--style-6" type="number" id="electricityBillPerUnit" name="electricityBillPerUnit" formControlName="electricityBillPerUnit">
                             </div>
                         </div>
+                        
+                        <!-- Security Fees price input -->
                         <div class="form-row">
                             <div class="name">Security Fees :</div>
                             <div class="value" (dblclick)="this.priceDetails.get('securityDeposit')!.enable();">
@@ -50,12 +71,13 @@
                         </div>
                     </form>
                 </div>
-
+                
+                <!-- Card footer -->
                 <div class="card-footer text-right">
+                    <!-- Update button -->
                     <button id="updatePriceDetails" (click)="updatePriceDetails()" class="btn btn-success" type="button" style="background-color: #198754;">Update</button>
                 </div>
             </div>
         </div>
-
     </main>
 </div>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';  
-/** Declare Razorpay as an external variable */
-declare var Razorpay: any;
 
+/** 
+ * Declare Razorpay as an external variable 
+ */
+declare var Razorpay: any;
 
 @Component({
   selector: 'pm-girls-standard',
@@ -10,16 +12,13 @@ declare var Razorpay: any;
 })
 export class GirlsStandardComponent implements OnInit { 
   paymentId:any 
-  
 
   constructor() { }
 
   ngOnInit(): void { 
-    
   } 
-  
 
-   
+  // Function to load the Razorpay SDK asynchronously
   loadRazorpaySdk() {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -34,6 +33,7 @@ export class GirlsStandardComponent implements OnInit {
     });
   } 
 
+  // Function to initiate payment using Razorpay
   async payNow() {
     console.log("clicked");
   
@@ -48,7 +48,7 @@ export class GirlsStandardComponent implements OnInit {
   
     // Razorpay SDK is now loaded, proceed with creating Razorpay instance
     const options = {
-      // your options here
+      // Razorpay payment options
       description: 'Sample Razorpay demo',
       currency: 'INR',
       amount: 4500000,
@@ -71,6 +71,7 @@ export class GirlsStandardComponent implements OnInit {
   
     };
   
+    // Define success and failure callback functions
     const successCallback = (paymentId: any) => {
       console.log('Payment successful with ID:', paymentId);
     };
@@ -79,7 +80,7 @@ export class GirlsStandardComponent implements OnInit {
       console.error('Payment failed with error:', error);
     };
   
-    // Create a new instance of Razorpay
+    // Create a new instance of Razorpay and open the payment modal
     const rzp = new Razorpay(options);
     rzp.on('payment.success', successCallback);
     rzp.on('payment.failure', failureCallback);

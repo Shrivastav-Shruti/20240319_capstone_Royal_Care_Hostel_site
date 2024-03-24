@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 /** Declare Razorpay as an external variable */
 declare var Razorpay: any;
 
@@ -8,13 +9,17 @@ declare var Razorpay: any;
   styleUrls: ['./boys-superdelux.component.css']
 })
 export class BoysSuperdeluxComponent implements OnInit {
-  paymentId:any
+  paymentId: any;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  /**
+   * Loads the Razorpay SDK dynamically.
+   * @returns A promise that resolves if the SDK is loaded successfully, otherwise rejects.
+   */
   loadRazorpaySdk() {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -27,11 +32,14 @@ export class BoysSuperdeluxComponent implements OnInit {
       };
       document.body.appendChild(script);
     });
-  } 
+  }
 
+  /**
+   * Handles the payment process using Razorpay.
+   */
   async payNow() {
     console.log("clicked");
-  
+
     // Ensure the Razorpay SDK is loaded
     try {
       await this.loadRazorpaySdk();
@@ -40,10 +48,10 @@ export class BoysSuperdeluxComponent implements OnInit {
       console.error('Failed to load Razorpay SDK', error);
       return;
     }
-  
+
     // Razorpay SDK is now loaded, proceed with creating Razorpay instance
     const options = {
-      // your options here
+      // Your options here
       description: 'Sample Razorpay demo',
       currency: 'INR',
       amount: 7000000,
@@ -51,7 +59,7 @@ export class BoysSuperdeluxComponent implements OnInit {
       key: 'rzp_test_rcZDiWvY5D4oKi',
       image: '',
       prefill: {
-        name:"Shruti Shrivastav",
+        name: "Shruti Shrivastav",
         email: 'shrutishrivastav38@gmail.com',
         contact: '8624833069',
       },
@@ -63,18 +71,19 @@ export class BoysSuperdeluxComponent implements OnInit {
           console.log('Payment dismissed');
         },
       },
-  
     };
-  
+
+    // Callback function for successful payment
     const successCallback = (paymentId: any) => {
       console.log('Payment successful with ID:', paymentId);
     };
-  
+
+    // Callback function for failed payment
     const failureCallback = (error: any) => {
       console.error('Payment failed with error:', error);
     };
-  
-    // Create a new instance of Razorpay
+
+    // Create a new instance of Razorpay and handle payment events
     const rzp = new Razorpay(options);
     rzp.on('payment.success', successCallback);
     rzp.on('payment.failure', failureCallback);

@@ -1,12 +1,19 @@
+/* Styles for the .row class */
 .row {
+    /* Set background color */
     background-color: #152733 !important;
+    /* Ensure content overflow is hidden */
     overflow: hidden;
 }
 
+/* Styles for table cells */
 td {
+    /* Add padding to table cells */
     padding: 10px;
 }
   
+/* Styles for table headers */
 th {
+    /* Add padding to table headers */
     padding: 10px;
 }

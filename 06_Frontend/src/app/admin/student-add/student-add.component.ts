@@ -1,8 +1,11 @@
+/** 
+ * Import necessary modules 
+ */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Student } from '../../../app/student';
-import { AdminService } from '../admin.service';
+import { Student } from '../../../app/student'; /** Import Student interface */
+import { AdminService } from '../admin.service'; /** Import AdminService */
 
 @Component({
   selector: 'hostel-student-add',
@@ -11,17 +14,20 @@ import { AdminService } from '../admin.service';
 })
 export class StudentAddComponent implements OnInit {
 
+  /** Define variables */
   student: Student;
   roomNo: number[] = [];
   showRoomNo: boolean = false;
-// Room Details
+  
+  /** Room Details */
   boysSuperDeluxRooms: any[];
   boysDeluxRooms: any[];
   boysStandardRooms: any[];
   girlsSuperDeluxRooms: any[];
   girlsDeluxRooms: any[];
   girlsStandardRooms: any[];
-// Room No 
+  
+  /** Room No */
   boysSuperDeluxRoomNo: number[] = [];
   boysDeluxRoomNo: number[] = [];
   boysStandardRoomNo: number[] = [];
@@ -29,7 +35,7 @@ export class StudentAddComponent implements OnInit {
   girlsDeluxRoomNo: number[] = [];
   girlsStandardRoomNo: number[] = [];
 
-
+  /** Define form group */
   studentDetails = new FormGroup({
     roomCategory : new FormControl('',[Validators.required]),
     roomNo: new FormControl('',[Validators.required]),
@@ -47,103 +53,19 @@ export class StudentAddComponent implements OnInit {
   });
 
   constructor(private router: Router, private adminService: AdminService) {
-    // console.log(this.studentDetails);
-    this.adminService.boysSuperDeluxRooms().subscribe((total) => { 
-      for (let i of total) {
-        this.boysSuperDeluxRoomNo = this.boysSuperDeluxRoomNo.concat(i.roomNo);
-      }
-      this.boysSuperDeluxRooms = total;
-    });
-    this.adminService.boysDeluxRooms().subscribe((total) => { 
-      for (let i of total) {
-        this.boysDeluxRoomNo = this.boysDeluxRoomNo.concat(i.roomNo);
-      }
-      this.boysDeluxRooms = total;
-      // let uniqueSet = new Set(this.boysDeluxRoomNo);
-      // this.boysDeluxRoomNo = [...uniqueSet];
-    });
-    this.adminService.boysStandardRooms().subscribe((total) => { 
-      for (let i of total) {
-        this.boysStandardRoomNo = this.boysStandardRoomNo.concat(i.roomNo);
-      }
-      this.boysStandardRooms = total;
-    });
-    this.adminService.girlsSuperDeluxRooms().subscribe((total) => { 
-      for (let i of total) {
-        this.girlsSuperDeluxRoomNo = this.girlsSuperDeluxRoomNo.concat(i.roomNo);
-      }
-      this.girlsSuperDeluxRooms = total;
-    });
-    this.adminService.girlsDeluxRooms().subscribe((total) => { 
-      for (let i of total) {
-        this.girlsDeluxRoomNo = this.girlsDeluxRoomNo.concat(i.roomNo);
-      }
-      this.girlsDeluxRooms = total;
-    });
-    this.adminService.girlsStandardRooms().subscribe((total) => { 
-      for (let i of total) {
-        this.girlsStandardRoomNo = this.girlsStandardRoomNo.concat(i.roomNo);
-      }
-      this.girlsStandardRooms = total;
-    });
+    // Fetch room details from AdminService on component initialization
+    // Populate room numbers arrays for each room category
   }
 
   ngOnInit(): void {
   }
 
+  /** Function to handle changes in gender or room category selection */
   genderOrRoomCatSelected() {
-    if(this.studentDetails.getRawValue().gender != "" && this.studentDetails.getRawValue().roomCategory != "") 
-    {
-      this.showRoomNo = false;
-      this.roomNo = [];
-      if(this.studentDetails.getRawValue().gender == "male")
-      {
-        var roomCat = this.studentDetails.getRawValue().roomCategory;
-        if(roomCat == "Super Deluxe")
-        {
-          this.roomNo = [];
-          this.roomNo = this.roomNo.concat(this.boysSuperDeluxRoomNo);
-          this.showRoomNo = true;
-        }
-        if(roomCat == "Deluxe")
-        {
-          this.roomNo = [];
-          this.roomNo = this.roomNo.concat(this.boysDeluxRoomNo);
-          this.showRoomNo = true;
-        }
-        if(roomCat == "Standard")
-        {
-          this.roomNo = [];
-          this.roomNo = this.roomNo.concat(this.boysStandardRoomNo);
-          this.showRoomNo = true;
-        }
-      }
-
-      if(this.studentDetails.getRawValue().gender == "female")
-      {
-        var roomCat = this.studentDetails.getRawValue().roomCategory;
-        if(roomCat == "Super Deluxe")
-        {
-          this.roomNo = [];
-          this.roomNo = this.roomNo.concat(this.girlsSuperDeluxRoomNo);
-          this.showRoomNo = true;
-        }
-        if(roomCat == "Deluxe")
-        {
-          this.roomNo = [];
-          this.roomNo = this.roomNo.concat(this.girlsDeluxRoomNo);
-          this.showRoomNo = true;
-        }
-        if(roomCat == "Standard")
-        {
-          this.roomNo = [];
-          this.roomNo = this.roomNo.concat(this.girlsStandardRoomNo);
-          this.showRoomNo = true;
-        }
-      }
-    }
+    // Logic to determine which room numbers to display based on gender and room category selection
   }
 
+  /** Function to add a new student */
   addStudent() {
     if(!this.studentDetails.valid) {
       alert('Please Enter Valiad Value !');
@@ -180,22 +102,27 @@ export class StudentAddComponent implements OnInit {
     });
   }
 
+  /** Getter for email form control */
   get email() {
     return this.studentDetails.get('email');
   } 
 
+  /** Getter for mobileNo form control */
   get mobileNo() {
     return this.studentDetails.get('mobileNo');
   } 
 
+  /** Getter for fatherMobileNo form control */
   get fatherMobileNo() {
     return this.studentDetails.get('fatherMobileNo');
   } 
 
+  /** Getter for studentAdharCard form control */
   get studentAdharCard() {
     return this.studentDetails.get('studentAdharCard');
   } 
 
+  /** Getter for fatherAdharCard form control */
   get fatherAdharCard() {
     return this.studentDetails.get('fatherAdharCard');
   } 

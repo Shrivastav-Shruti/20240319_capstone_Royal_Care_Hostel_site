@@ -1,4 +1,10 @@
-.row {
+/**
+ * Styles for the .row class.
+ * Overrides any existing background color with #152733.
+ * The overflow property is set to hidden.
+ * !important is used to ensure these styles take precedence.
+ */
+ .row {
     background-color: #152733 !important;
     overflow: hidden;
 }

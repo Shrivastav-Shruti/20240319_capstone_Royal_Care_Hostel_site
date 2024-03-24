@@ -6,6 +6,9 @@ import { Student } from 'src/app/student';
 import { AdminService } from '../admin.service';
 import { ViewAllStudentService } from '../view-all-student/view-all-student.service';
 
+/**
+ * Component to update student details.
+ */
 @Component({
   selector: 'pm-update-student',
   templateUrl: './update-student.component.html',
@@ -33,10 +36,16 @@ export class UpdateStudentComponent implements OnInit {
   searchIsDone: boolean = false;
   searchmsg: string = "No Student Found!!";
 
+  /**
+   * Form group for searching room number.
+   */
   rNoForSearch = new FormGroup({
     rNo: new FormControl('',[Validators.required])
   });
 
+  /**
+   * Form group for student details.
+   */
   studentDetails = new FormGroup({
     roomNo: new FormControl('',[Validators.required]),
     personNo: new FormControl('',[Validators.required]),
@@ -55,14 +64,21 @@ export class UpdateStudentComponent implements OnInit {
     isStatus: new FormControl('',[Validators.required])
   });
 
-  constructor(private viewAllStudentService: ViewAllStudentService, private adminService: AdminService, private router: Router, private httpClient: HttpClient) 
+  constructor(
+    private viewAllStudentService: ViewAllStudentService, 
+    private adminService: AdminService, 
+    private router: Router, 
+    private httpClient: HttpClient
+  ) 
   { 
+    // Fetch students data
     this.viewAllStudentService.findStudent()
     .subscribe((studentsDetail) => {
         this.students = studentsDetail;
         this.students.sort((a, b) => (a.roomNo > b.roomNo) ? 1 : -1);
         this.students = this.students.filter(a=> a.isStatus !== false);
          
+        // Filter students based on gender and room category
         this.femaleStudents = this.students.filter(a=> a.gender == "female");
         this.superDeluxeRoomsFemaleStudents = this.femaleStudents.filter(a => a.roomCategory == "Super Deluxe");
         this.deluxeRoomsFemaleStudents = this.femaleStudents.filter(a => a.roomCategory == "Deluxe");
@@ -82,6 +98,9 @@ export class UpdateStudentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Update student details.
+   */
   updateStudent() {
     const student = this.studentDetails.getRawValue();
     this.adminService.updateStudent(student)
@@ -91,9 +110,11 @@ export class UpdateStudentComponent implements OnInit {
     );
   }
 
+  /**
+   * Remove student from the system.
+   */
   removeStudent() {
     const student = this.studentDetails.getRawValue();
-    // console.log(student);
     if(confirm("Are you sure to delete room no " + student.roomNo)) {
       this.adminService.removeStudent(student)
       .subscribe((msg) => {
@@ -104,6 +125,9 @@ export class UpdateStudentComponent implements OnInit {
     }
   }
 
+  /**
+   * Search student by room number.
+   */
   searchRoomNo() 
   {
     this.searchIsDone = false;
@@ -116,8 +140,12 @@ export class UpdateStudentComponent implements OnInit {
     this.searchIsDone = true;
   }
 
+  /**
+   * Set form control values with student details.
+   * 
+   * @param student Student object
+   */
   setValue(student: Student) {
-    // console.log(student);
     this.studentDetails.controls['roomNo'].setValue(student.roomNo);
     this.studentDetails.controls['personNo'].setValue(student.personNo);
     this.studentDetails.controls['gender'].setValue(student.gender);
@@ -133,9 +161,11 @@ export class UpdateStudentComponent implements OnInit {
     this.studentDetails.controls['currentAdress'].setValue(student.currentAdress);
     this.studentDetails.controls['collegeName'].setValue(student.collegeName);
     this.studentDetails.controls['isStatus'].setValue(student.isStatus);
-
   }
 
+  /**
+   * Get the form control for room number.
+   */
   get rNo() {
     return this.rNoForSearch.get('rNo');
   }

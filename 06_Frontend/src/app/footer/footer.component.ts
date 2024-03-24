@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  email = "darshanparmar263@gmail.com";
-  userName = "darshankparmar";
+  // Email address for contacting the hostel
+  email = "shrutishrivastav938@gmail.com";
+  
+  // Username for social media handles
+  userName = "shrutishrivastav";
   
   constructor() { }
 

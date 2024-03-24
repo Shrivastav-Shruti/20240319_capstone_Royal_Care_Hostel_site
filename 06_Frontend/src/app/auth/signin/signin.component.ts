@@ -17,19 +17,28 @@ export class SigninComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService) 
   { 
+    // Subscribing to the user authentication service to get the current user
     this.authService.findMe().subscribe(user =>(this.user = user));
   }
 
   ngOnInit(): void {
   }
 
+  // Method triggered when the sign-in button is clicked
   signin() {
-    this.error = '';
+    this.error = ''; // Clear any previous errors
+    // Calling the login method of the authentication service to perform user login
     this.authService
       .login(this.currentUsername, this.currentPassword)
-      .subscribe(s => this.router.navigate(['']), err => this.error = err);
+      .subscribe(
+        // On successful login, navigate to the home page
+        s => this.router.navigate(['']),
+        // On login error, display the error message
+        err => this.error = err
+      );
   }
 
+  // Method to redirect to the home page
   redirectToHome() {
     this.router.navigate(['/dashboard']); // navigate to dashboard page
   }

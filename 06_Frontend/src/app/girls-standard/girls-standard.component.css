@@ -1,0 +1,47 @@
+.room {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.price {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.available {
+    color: #28a745;
+    font-weight: bold;
+}
+
+img {
+    width: 500px;
+    max-width: none;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.list{
+    list-style: none; 
+    
+}  
+
+.btn { 
+    margin-top: 20px; 
+    margin-right: 10px;
+} 
+
+
+
+
+@media screen and (max-width: 768px) {
+    .room {
+        padding: 10px;
+    }
+    
+    img {
+        max-width: 100%;
+    }
+}

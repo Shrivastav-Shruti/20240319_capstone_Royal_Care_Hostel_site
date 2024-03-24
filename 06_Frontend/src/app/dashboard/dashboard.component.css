@@ -1,0 +1,13 @@
+img {
+    width: 100%; 
+    height: 900px;
+}
+img.img-fluid {
+    height: 249px;
+    width: 249px;
+    object-fit: contain;
+} 
+.skills-content img{
+    width: 100%; 
+    height: 50%;
+}

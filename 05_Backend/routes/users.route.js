@@ -59,7 +59,18 @@ router.post('/updateProfilePic', upload.single('uploadedImage'), (req, res, next
     res.status(400).send({
         error: error.message
     });
-});
+}); 
+
+// Route to remove profile picture
+router.delete('/removeProfilePic', asyncHandler(removeProfilePic), (req, res) => {
+    res.status(200).send({
+        statusCode: 200,
+        status: 'success',
+        message: 'Profile picture removed successfully!'
+    });
+}); 
+
+
 
 // Middleware function to get all users
 async function getAllUser(req, res, next) {
@@ -78,6 +89,8 @@ async function updateUser(req, res, next) {
     }
     next();
 }
+ 
+
 
 // Handler function to send user details as JSON response
 function users(req, res) {

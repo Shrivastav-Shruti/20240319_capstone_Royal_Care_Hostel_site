@@ -10,8 +10,9 @@
 # dependencies
 /node_modules  
 
-src/
+
 server/
+src/ 
 
 
 # profiling files

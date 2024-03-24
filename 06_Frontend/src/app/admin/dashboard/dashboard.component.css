@@ -1,3 +1,4 @@
+/* Styles for the div-box class */
 .div-box {
     border-radius: 20px;
     margin: 20px 0px;
@@ -5,6 +6,8 @@
     padding-top: 20px;
     box-shadow: 8px 8px 0px 0px #adadad;
 }
+
+/* Styles for user image */
 .User-img {
     width: 100px;
     height: 100px;
@@ -13,32 +16,48 @@
     border: 1px solid #ddd;
     margin: 0 auto;
 }
-.User-img img{
-  width: 100%;
+
+/* Styles for image within user image container */
+.User-img img {
+    width: 100%;
 }
+
+/* Styles for user name */
 .User-name {
     text-align: center;
     font-size: 22px;
     margin: 15px 0px 10px;
 }
+
+/* Styles for designation */
 .designation {
     text-align: center;
     font-size: 16px;
 }
+
+/* Styles for contact button */
 .contact-btn {
     margin: 0 auto;
     display: table;
 }
+
+/* Styles for buttons within contact button container */
 .contact-btn .btn {
     width: 95px;
     margin: 15px 5px;
 }
-.profile-details ul{
-  padding-left: 10px;
+
+/* Styles for profile details */
+.profile-details ul {
+    padding-left: 10px;
 }
-.profile-details ul li{
-  list-style: none;
+
+/* Styles for list items within profile details */
+.profile-details ul li {
+    list-style: none;
 }
+
+/* Styles for links within list items in profile details */
 .profile-details ul li a {
     color: #607d8b;
     text-decoration: none;
@@ -48,19 +67,26 @@
     border-left: 3px solid transparent;
     transition: 0.4s;
 }
+
+/* Styles for last link within list items in profile details */
 .profile-details ul li:last-child a {
-  border-bottom: none;
-  border-bottom-right-radius: 20px;
+    border-bottom: none;
+    border-bottom-right-radius: 20px;
 }
+
+/* Styles for hover effect on links within list items in profile details */
 .profile-details ul li a:hover {
     color: #2196F3;
     background-color: #e6f4ff;
     border-left: 3px solid #2196F3;
 }
+
+/* Styles for icons within links in profile details */
 .profile-details ul li a i {
     margin-right: 8px;
 }
 
+/* Styles for row */
 .row {
     background-color: #152733 !important;
     overflow: hidden;

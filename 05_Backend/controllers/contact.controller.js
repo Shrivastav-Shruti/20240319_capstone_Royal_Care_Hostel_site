@@ -5,8 +5,13 @@
  * @returns {Promise<Object>} - A promise resolving to the inserted contact form object.
  */
 async function insertContactForm(contactForm) {
-    // console.log(`saving contactForm to db`, contactForm);
-    return await new Contact(contactForm).save();
+    try {
+        // console.log(`saving contactForm to db`, contactForm);
+        return await new Contact(contactForm).save();
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -15,12 +20,16 @@ async function insertContactForm(contactForm) {
  * @returns {Promise<Array<Object>|null>} - A promise resolving to an array of contact form objects if found, null otherwise.
  */
 async function contactHistory() {
-    let contactHistory = await Contact.find({});
-    if(contactHistory) {
-        return contactHistory;
-    }
-    else {
-        return throwError;
+    try {
+        let contactHistory = await Contact.find({});
+        if (contactHistory) {
+            return contactHistory;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
 }
 

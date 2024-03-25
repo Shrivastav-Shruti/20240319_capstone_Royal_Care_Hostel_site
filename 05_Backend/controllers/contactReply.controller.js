@@ -5,8 +5,13 @@
  * @returns {Promise<Object>} - A promise resolving to the inserted contact reply object.
  */
 async function insertContactReply(contactReply) {
-    // console.log(`saving contactReply to db`, contactReply);
-    return await new ContactReply(contactReply).save();
+    try {
+        // console.log(`saving contactReply to db`, contactReply);
+        return await new ContactReply(contactReply).save();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -15,12 +20,16 @@ async function insertContactReply(contactReply) {
  * @returns {Promise<Array<Object>|null>} - A promise resolving to an array of contact reply objects if found, null otherwise.
  */
 async function contactReplyHistory() {
-    let contactReplyHistory = await ContactReply.find({});
-    if(contactReplyHistory) {
-        return contactReplyHistory;
-    }
-    else {
-        return throwError;
+    try {
+        let contactReplyHistory = await ContactReply.find({});
+        if (contactReplyHistory) {
+            return contactReplyHistory;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 }
 

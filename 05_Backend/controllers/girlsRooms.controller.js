@@ -4,8 +4,13 @@
  * @returns {Promise<Array<Object>>} - A promise resolving to an array of available super deluxe rooms.
  */
 async function superDeluxeAvailability() {
-    let total = await girlsSuperDeluxeRooms.find({ isStatus: { $eq: false } });
-    return total;
+    try {
+        let total = await girlsSuperDeluxeRooms.find({ isStatus: { $eq: false } });
+        return total;
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -14,8 +19,13 @@ async function superDeluxeAvailability() {
  * @returns {Promise<Array<Object>>} - A promise resolving to an array of available deluxe rooms.
  */
 async function deluxeAvailability() {
-    let total = await girlsDeluxeRooms.find({ isStatus: { $eq: false } });
-    return total;
+    try {
+        let total = await girlsDeluxeRooms.find({ isStatus: { $eq: false } });
+        return total;
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -24,8 +34,13 @@ async function deluxeAvailability() {
  * @returns {Promise<Array<Object>>} - A promise resolving to an array of available standard rooms.
  */
 async function standardAvailability() {
-    let total = await girlsStandardRooms.find({ isStatus: { $eq: false } });
-    return total;
+    try {
+        let total = await girlsStandardRooms.find({ isStatus: { $eq: false } });
+        return total;
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -35,15 +50,20 @@ async function standardAvailability() {
  * @returns {Promise<Object>} - A promise resolving to the MongoDB update result.
  */
 async function updateSuperDeluxe(student) {
-    if(student.isStatus == true) 
-        student.isStatus = false;
-    else
-        student.isStatus = true;
-    
-    return await girlsSuperDeluxeRooms.updateOne(
-        { personNo: student.personNo },
-        { $set: { isStatus: student.isStatus } }
-    );
+    try {
+        if (student.isStatus == true) 
+            student.isStatus = false;
+        else
+            student.isStatus = true;
+
+        return await girlsSuperDeluxeRooms.updateOne(
+            { personNo: student.personNo },
+            { $set: { isStatus: student.isStatus } }
+        );
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -53,15 +73,20 @@ async function updateSuperDeluxe(student) {
  * @returns {Promise<Object>} - A promise resolving to the MongoDB update result.
  */
 async function updateDeluxe(student) {
-    if(student.isStatus == true) 
-        student.isStatus = false;
-    else
-        student.isStatus = true;
-    
-    return await girlsDeluxeRooms.updateOne(
-        { personNo: student.personNo },
-        { $set: { isStatus: student.isStatus } }
-    );
+    try {
+        if (student.isStatus == true) 
+            student.isStatus = false;
+        else
+            student.isStatus = true;
+
+        return await girlsDeluxeRooms.updateOne(
+            { personNo: student.personNo },
+            { $set: { isStatus: student.isStatus } }
+        );
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -71,15 +96,20 @@ async function updateDeluxe(student) {
  * @returns {Promise<Object>} - A promise resolving to the MongoDB update result.
  */
 async function updateStandard(student) {
-    if(student.isStatus == true) 
-        student.isStatus = false;
-    else
-        student.isStatus = true;
-    
-    return await girlsStandardRooms.updateOne(
-        { personNo: student.personNo },
-        { $set: { isStatus: student.isStatus } }
-    );
+    try {
+        if (student.isStatus == true) 
+            student.isStatus = false;
+        else
+            student.isStatus = true;
+
+        return await girlsStandardRooms.updateOne(
+            { personNo: student.personNo },
+            { $set: { isStatus: student.isStatus } }
+        );
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 module.exports = {

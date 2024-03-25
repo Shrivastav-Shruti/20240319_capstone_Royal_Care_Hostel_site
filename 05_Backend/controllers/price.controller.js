@@ -4,15 +4,20 @@
  * @returns {Promise<Object|null>} - A promise resolving to the hostel price details if found, null otherwise.
  */
 async function getHostelPriceDetails() {
-    let priceDetails = await Price.findOne({});
-    
-    if(priceDetails) {
-        priceDetails = priceDetails.toObject();
-        return priceDetails;
+    try {
+        let priceDetails = await Price.findOne({});
+        
+        if(priceDetails) {
+            priceDetails = priceDetails.toObject();
+            return priceDetails;
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
-    else {
-        return throwError;
-    }   
 }
 
 /**
@@ -22,19 +27,24 @@ async function getHostelPriceDetails() {
  * @returns {Promise<Object>} - A promise resolving to the MongoDB update result.
  */
 async function updatePriceDetails(priceDetails) {
-    return Price.updateOne(
-        {  },
-        {
-            $set: {
-                superDeluxe: priceDetails.superDeluxe,
-                deluxe: priceDetails.deluxe,
-                standard: priceDetails.standard,
-                foodPackage: priceDetails.foodPackage,
-                electricityBillPerUnit: priceDetails.electricityBillPerUnit,
-                securityDeposit: priceDetails.securityDeposit
+    try {
+        return Price.updateOne(
+            {  },
+            {
+                $set: {
+                    superDeluxe: priceDetails.superDeluxe,
+                    deluxe: priceDetails.deluxe,
+                    standard: priceDetails.standard,
+                    foodPackage: priceDetails.foodPackage,
+                    electricityBillPerUnit: priceDetails.electricityBillPerUnit,
+                    securityDeposit: priceDetails.securityDeposit
+                }
             }
-        }
-    );
+        );
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 module.exports = {

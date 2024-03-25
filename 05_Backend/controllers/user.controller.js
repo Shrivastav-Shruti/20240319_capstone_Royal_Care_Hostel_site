@@ -7,12 +7,17 @@
  * @returns {Promise<Object>} - A promise resolving to the inserted user object.
  */
 async function insert(user) {
-    user.hashedPassword = bcrypt.hashSync(user.newPassword, 10);
-    delete user.password;
-    user.username = user.newUsername;
-    // make a mongoose db call to save user in db
-    // console.log(`saving user to db`, user);
-    return await new User(user).save();
+    try {
+        user.hashedPassword = bcrypt.hashSync(user.newPassword, 10);
+        delete user.password;
+        user.username = user.newUsername;
+        // make a mongoose db call to save user in db
+        // console.log(`saving user to db`, user);
+        return await new User(user).save();
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 /**
@@ -24,16 +29,20 @@ async function insert(user) {
  * @returns {Promise<Object|null>} - A promise resolving to the user object if found, null otherwise.
  */
 async function getUserByUsernameAndPassword(currentUsername, currentPassword) {
-    let user = await User.findOne({ username: currentUsername });
-    // console.log(user);
-    if( isUserValid(user, currentPassword, user.hashedPassword)) {
-        user = user.toObject();
-        delete user.hashedPassword;
+    try {
+        let user = await User.findOne({ username: currentUsername });
         // console.log(user);
-        return user;
-    }
-    else {
-        return throwError;
+        if (isUserValid(user, currentPassword, user.hashedPassword)) {
+            user = user.toObject();
+            delete user.hashedPassword;
+            // console.log(user);
+            return user;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
@@ -44,14 +53,18 @@ async function getUserByUsernameAndPassword(currentUsername, currentPassword) {
  * @returns {Promise<Object|null>} - A promise resolving to the user object if found, null otherwise.
  */
 async function getUserById(id) {
-    let user = await User.findById(id);
-    if(user) {
-        user = user.toObject();
-        delete user.hashedPassword;
-        return user;
-    }
-    else {
-        return null;
+    try {
+        let user = await User.findById(id);
+        if (user) {
+            user = user.toObject();
+            delete user.hashedPassword;
+            return user;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
@@ -61,12 +74,16 @@ async function getUserById(id) {
  * @returns {Promise<Array<Object>|null>} - A promise resolving to an array of user objects if found, null otherwise.
  */
 async function getAllUser() {
-    let users = await User.find({});
-    if(users) {
-        return users;
-    }
-    else {
-        return null;
+    try {
+        let users = await User.find({});
+        if (users) {
+            return users;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
@@ -78,22 +95,26 @@ async function getAllUser() {
  * @returns {Promise<Object>} - A promise resolving to the MongoDB update result.
  */
 async function updateUser(user) {
-    let userMatch = await User.findOne({ username: user.username });
-    if(isUserValid(userMatch, user.password, userMatch.hashedPassword)) {
-        return User.updateOne(
-            { username: user.username },
-            {
-                $set: {
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    mobileNumber: user.mobileNumber,
-                    email: user.email
+    try {
+        let userMatch = await User.findOne({ username: user.username });
+        if (isUserValid(userMatch, user.password, userMatch.hashedPassword)) {
+            return User.updateOne(
+                { username: user.username },
+                {
+                    $set: {
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        mobileNumber: user.mobileNumber,
+                        email: user.email
+                    }
                 }
-            }
-        );
-    }
-    else {
-        return throwError;
+            );
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
 }
 

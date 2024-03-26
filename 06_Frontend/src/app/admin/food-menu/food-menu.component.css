@@ -4,4 +4,11 @@
     background-color: #152733 !important;
     /* Hide any content that overflows the container */
     overflow: hidden;
+} 
+
+/* Media query for screens with a maximum width of 768px */
+@media screen and (max-width: 768px) {
+    .row {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
 }

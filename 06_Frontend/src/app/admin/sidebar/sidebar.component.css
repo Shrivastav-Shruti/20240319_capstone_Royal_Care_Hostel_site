@@ -132,4 +132,24 @@ a.nav-link {
 /* Active link color */
 a.nav-link.dkpActive {
   color: red; /* Setting active link color */
+} 
+
+
+/* Responsive styles */
+
+@media screen and (max-width: 768px) {
+  main {
+    height: auto !important;
+    margin-bottom: 0;
+  }
+
+  .b-example-divider {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .nav-link {
+    font-size: 14px;
+  }
 }

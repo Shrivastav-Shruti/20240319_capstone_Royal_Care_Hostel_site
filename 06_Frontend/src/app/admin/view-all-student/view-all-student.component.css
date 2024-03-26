@@ -69,4 +69,19 @@ label span {
     text-align: center;
     font-size: 22px;
     margin: 15px 0px 10px;
+} 
+
+/* Responsive styles */
+
+@media screen and (max-width: 768px) {
+    .card-profile .card-avatar, .card-testimonial .card-avatar {
+        max-width: 40px;
+        height: 40px;
+        margin-top: -20px;
+    }
+
+    .room-title {
+        font-size: 18px;
+        margin: 10px 0px;
+    }
 }

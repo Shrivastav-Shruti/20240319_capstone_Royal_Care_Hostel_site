@@ -37,7 +37,7 @@ const upload = multer({
 router.get('/AllUser', asyncHandler(getAllUser), users);
 
 // Route to update user details
-router.post('/userUpdate', asyncHandler(updateUser), msg);
+router.put('/userUpdate', asyncHandler(updateUser), msg);
 
 // Route to update profile picture
 router.post('/updateProfilePic', upload.single('uploadedImage'), (req, res, next) => {

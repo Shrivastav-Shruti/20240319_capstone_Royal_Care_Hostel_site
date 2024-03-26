@@ -12,7 +12,7 @@ const priceController = require('../controllers/price.controller');
 router.get('/findHostelPriceDetails', asyncHandler(getHostelPriceDetails), price);
 
 // Route for updating hostel price details
-router.post('/updatePriceDetails', asyncHandler(updatePriceDetails), msg);
+router.put('/updatePriceDetails', asyncHandler(updatePriceDetails), msg);
 
 // Middleware function to handle retrieval of hostel price details
 async function getHostelPriceDetails(req, res, next) {

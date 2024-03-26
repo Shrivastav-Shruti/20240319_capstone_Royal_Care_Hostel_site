@@ -12,10 +12,10 @@ const router = express.Router();
 router.post('/addStudent', asyncHandler(insertStudent), student);
 
 // Route for updating student details
-router.post('/updateStudent', asyncHandler(updateStudent), msg);
+router.put('/updateStudent', asyncHandler(updateStudent), msg);
 
 // Route for removing a student
-router.post('/removeStudent', asyncHandler(removeStudent), msg);
+router.delete('/removeStudent', asyncHandler(removeStudent), msg);
 
 // Route for viewing student details
 router.get('/viewStudent', asyncHandler(viewStudent), student);

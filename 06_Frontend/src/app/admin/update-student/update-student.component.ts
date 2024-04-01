@@ -158,7 +158,7 @@ export class UpdateStudentComponent implements OnInit {
     this.studentDetails.controls['email'].setValue(student.email);
     this.studentDetails.controls['studentAdharCard'].setValue(student.studentAdharCard);
     this.studentDetails.controls['fatherAdharCard'].setValue(student.fatherAdharCard);
-    this.studentDetails.controls['currentAdress'].setValue(student.currentAdress);
+    this.studentDetails.controls['currentAdress'].setValue(student.currentAddress);
     this.studentDetails.controls['collegeName'].setValue(student.collegeName);
     this.studentDetails.controls['isStatus'].setValue(student.isStatus);
   }

@@ -48,7 +48,7 @@ export class GirlsSuperdeluxComponent implements OnInit {
       // Specify payment options
       description: 'Sample Razorpay demo',
       currency: 'INR',
-      amount: 7000000,
+      amount: 300000,
       name: 'Shruti',
       key: 'rzp_test_rcZDiWvY5D4oKi',
       image: '',

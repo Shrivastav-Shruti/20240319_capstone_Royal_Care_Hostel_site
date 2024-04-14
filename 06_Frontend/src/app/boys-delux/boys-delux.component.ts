@@ -58,7 +58,7 @@ export class BoysDeluxComponent implements OnInit {
       // Razorpay payment options
       description: 'Sample Razorpay demo',
       currency: 'INR',
-      amount: 5500000,
+      amount: 200000,
       name: 'Shruti',
       key: 'rzp_test_rcZDiWvY5D4oKi',
       image: '',
